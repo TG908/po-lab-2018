@@ -27,6 +27,9 @@ public:
 
   /// Lattice interface
   virtual bool operator<=(AbstractDomain &other) = 0;
+  virtual bool operator==(AbstractDomain &other){
+      return this <= &other && &other <= this;
+  }
   virtual shared_ptr<AbstractDomain> leastUpperBound(AbstractDomain &other) = 0;
 
   virtual shared_ptr<AbstractDomain> widen(AbstractDomain &other) { return nullptr; }

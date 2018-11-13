@@ -19,9 +19,7 @@ bool State::put(Value &v, std::shared_ptr<AbstractDomain> ad) {
 
   DEBUG_OUTPUT("State::put for " << v.getName() << " with " << *ad);
   if (vars.find(&v) != vars.end()) {
-    if (*ad<=(*vars[&v])) {
-      return false;
-    }
+    
     auto savedVar = vars[&v];
 
     if(vars[&v]->requiresWideningAndNarrowing() && changeCounts[&v] > WIDENING_AFTER){
@@ -39,6 +37,9 @@ bool State::put(Value &v, std::shared_ptr<AbstractDomain> ad) {
     //only count if vars are actually changed
     if( !(*vars[&v]<=*savedVar && *savedVar<=*vars[&v]) ){
         changeCounts[&v]++;
+        return true;
+    }else{
+      return false;
     }
   } else {
     vars[&v] = ad;

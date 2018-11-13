@@ -10,6 +10,6 @@ int main(int argc, char const *argv[]) {
   while (x <= 100)
     x++;
 
-  // at this point x={17}
+  // at this point x={101}
   printf("%d\n", x);
 }
