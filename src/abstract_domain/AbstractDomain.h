@@ -29,17 +29,14 @@ public:
   virtual bool operator<=(AbstractDomain &other) = 0;
   virtual shared_ptr<AbstractDomain> leastUpperBound(AbstractDomain &other) = 0;
 
-  virtual shared_ptr<AbstractDomain> widen(AbstractDomain &other) {
-    // The default implementation simply returns a new shared_ptr to this
-    return shared_ptr<AbstractDomain>(this);
-  }
+  virtual shared_ptr<AbstractDomain> widen(AbstractDomain &other) { return nullptr; }
 
   virtual bool requiresWideningAndNarrowing() {
     // The default is that widening is neither supported nor required
     return false;
   }
 
-  virtual shared_ptr<AbstractDomain> intersect(AbstractDomain& other);
+  virtual shared_ptr<AbstractDomain> intersect(AbstractDomain& other){ return nullptr; }
 
     /// Binary Arithmetic Operations
   virtual shared_ptr<AbstractDomain> add(unsigned numBits, AbstractDomain &other, bool nuw, bool nsw) = 0;

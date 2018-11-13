@@ -26,8 +26,8 @@ bool State::put(Value &v, std::shared_ptr<AbstractDomain> ad) {
 
     if(vars[&v]->requiresWideningAndNarrowing() && changeCounts[&v] > WIDENING_AFTER){
         //widen or narrow?
-        if ((*vars[&v]) <= *ad) {
-          vars[&v]->intersect(*ad);
+        if ((*vars[&v]) <= *ad && changeCounts[&v] < WIDENING_AFTER + MAX_WARROWING_ITERATIONS) {
+          vars[&v] = vars[&v]->intersect(*ad);
         }else{
           vars[&v] = vars[&v]->widen(*ad);
         }

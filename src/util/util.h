@@ -10,7 +10,7 @@
 /// settings
 
 /// should debug output enabled?
-#define DEBUG
+//#define DEBUG
 #define VISUAL_DEBUG
 
 /// type of abstract domain
@@ -21,6 +21,7 @@
 
 /// how many changes do we allow before we apply widening (for ADs in which it is reuired)
 #define WIDENING_AFTER 1
+#define MAX_WARROWING_ITERATIONS 60
 
 /// do not to touch anything beneath here (useful functions)
 
