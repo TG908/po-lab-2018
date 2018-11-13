@@ -23,9 +23,16 @@ bool State::put(Value &v, std::shared_ptr<AbstractDomain> ad) {
       return false;
     }
     auto savedVar = vars[&v];
-    if(vars[&v]->requiresWideningAndNarrowing() && changeCounts[&v] > WIDENING_AFTER){
-        //widen
-        vars[&v] = vars[&v]->widen(*ad);
+
+    if(vars[&v]->requiresWidening() && changeCounts[&v] > WIDENING_AFTER){
+        //widen or narrow?
+        if ((*vars[&v]) <= *ad) {
+          vars[&v]->intersect(*ad);
+        }
+        else {
+          vars[&v] = vars[&v]->widen(*ad);
+        }
+
     }else{
         //join
         vars[&v] = vars[&v]->leastUpperBound(*ad);

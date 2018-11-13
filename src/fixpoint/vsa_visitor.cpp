@@ -16,6 +16,7 @@ void VsaVisitor::visitBasicBlock(BasicBlock &BB) {
     /// mark state such that it is not bottom any more
     newState.markVisited();
 
+    /// iterate over arguments passed to the function
     for (auto &arg : BB.getParent()->args()) {
       /// put top for all arguments
       if (arg.getType()->isIntegerTy())
@@ -60,6 +61,7 @@ void VsaVisitor::visitBasicBlock(BasicBlock &BB) {
 void VsaVisitor::visitTerminatorInst(TerminatorInst &I) {
   DEBUG_OUTPUT("visitTerminationInst: entered");
   const auto currentBB = I.getParent();
+  DEBUG_OUTPUT(I.getParent()->getName());
   const auto oldState = programPoints.find(currentBB);
   if (oldState != programPoints.end()) {
     DEBUG_OUTPUT("visitTerminationInst: old state found");
@@ -219,7 +221,7 @@ void VsaVisitor::visitSwitchInst(SwitchInst &I) {
 }
 
 void VsaVisitor::visitLoadInst(LoadInst &I) {
-  // not strictly necessary (non-present vars are T ) but good for clearity
+  // not strictly necessary (non-present vars are T ) but good for clarity
   newState.put(I, AD_TYPE::create_top(I.getType()->getIntegerBitWidth()));
 }
 
