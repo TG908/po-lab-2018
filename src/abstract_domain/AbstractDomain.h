@@ -39,7 +39,9 @@ public:
     return false;
   }
 
-  /// Binary Arithmetic Operations
+  virtual shared_ptr<AbstractDomain> intersect(AbstractDomain& other);
+
+    /// Binary Arithmetic Operations
   virtual shared_ptr<AbstractDomain> add(unsigned numBits, AbstractDomain &other, bool nuw, bool nsw) = 0;
   virtual shared_ptr<AbstractDomain> sub(unsigned numBits, AbstractDomain &other, bool nuw, bool nsw) = 0;
   virtual shared_ptr<AbstractDomain> mul(unsigned numBits, AbstractDomain &other, bool nuw, bool nsw) = 0;
