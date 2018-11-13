@@ -603,7 +603,7 @@ SimpleInterval SimpleInterval::_widen(SimpleInterval const& o) {
   return r;
 }
 
-bool SimpleInterval::requiresWidening() {
+bool SimpleInterval::requiresWideningAndNarrowing() {
   // This AD requires widening to ensure speedy termination
   return true;
 }

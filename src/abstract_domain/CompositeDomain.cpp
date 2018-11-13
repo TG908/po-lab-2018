@@ -247,8 +247,8 @@ shared_ptr<AbstractDomain> CompositeDomain::widen(AbstractDomain &other) {
   return delegate->widen(other);
 }
 
-bool CompositeDomain::requiresWidening() {
-  return delegate->requiresWidening();
+bool CompositeDomain::requiresWideningAndNarrowing() {
+  return delegate->requiresWideningAndNarrowing();
 }
 
 

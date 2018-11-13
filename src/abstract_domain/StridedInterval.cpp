@@ -1387,7 +1387,7 @@ shared_ptr<AbstractDomain> StridedInterval::widen(AbstractDomain &other) {
   return ret;
 }
 
-bool StridedInterval::requiresWidening() {
+bool StridedInterval::requiresWideningAndNarrowing() {
   // This AD requires widening to ensure speedy termination
   return true;
 }

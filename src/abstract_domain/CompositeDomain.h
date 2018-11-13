@@ -66,7 +66,7 @@ public:
 
   // Widening
   virtual shared_ptr<AbstractDomain> widen(AbstractDomain &other);
-  virtual bool requiresWidening();
+  virtual bool requiresWideningAndNarrowing();
 
   bool operator==(const BoundedSet &other);
   bool operator<=(AbstractDomain &other);

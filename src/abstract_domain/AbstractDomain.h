@@ -34,7 +34,7 @@ public:
     return shared_ptr<AbstractDomain>(this);
   }
 
-  virtual bool requiresWidening() {
+  virtual bool requiresWideningAndNarrowing() {
     // The default is that widening is neither supported nor required
     return false;
   }

@@ -101,7 +101,7 @@ public:
 
   // Widening
   virtual shared_ptr<AbstractDomain> widen(AbstractDomain &other);
-  virtual bool requiresWidening();
+  virtual bool requiresWideningAndNarrowing();
 
 
   /// Member functions

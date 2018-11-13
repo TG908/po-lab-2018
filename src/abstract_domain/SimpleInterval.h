@@ -105,7 +105,7 @@ public:
 
   DomainType getDomainType() const { return simpleInterval; };
 
-  virtual bool requiresWidening();
+  virtual bool requiresWideningAndNarrowing();
 
   /// Member functions
   unsigned getBitWidth() const { return bitWidth; }
