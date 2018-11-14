@@ -22,11 +22,14 @@ bool State::put(Value &v, std::shared_ptr<AbstractDomain> ad) {
     
     auto savedVar = vars[&v];
 
+    // only use warrowing if the flag is set and the count is higher than WIDENING_AFTER
     if(vars[&v]->requiresWideningAndNarrowing() && changeCounts[&v] > WIDENING_AFTER){
-        //widen or narrow?
+        // narrowing is only used a certain number of iterations to ensure termination of the algorithm otherwise widen
         if (*ad <= (*vars[&v]) && changeCounts[&v] < WIDENING_AFTER + MAX_WARROWING_ITERATIONS) {
+          // apply narrowing
           vars[&v] = vars[&v]->intersect(*ad);
         }else{
+          // apply widening
           vars[&v] = vars[&v]->widen(*ad);
         }
 
