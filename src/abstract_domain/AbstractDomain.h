@@ -36,7 +36,7 @@ public:
 
   virtual bool requiresWideningAndNarrowing() {
     // The default is that widening is neither supported nor required
-    return false;
+    return true;
   }
 
   virtual shared_ptr<AbstractDomain> intersect(AbstractDomain& other){ return nullptr; }
