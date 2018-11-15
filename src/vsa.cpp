@@ -11,7 +11,5 @@
 
 #include "llvm/IR/Dominators.h"
 
-#define DEBUG_TYPE "hello"
-
 static RegisterPass<VsaPass> Y("vsapass",
                                "VSA Pass (with getAnalysisUsage implemented)");
